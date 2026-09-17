@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>🏢 许家印模拟器 · 终极版</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ===== 开局 ===== -->
+<div id="start">
+  <div class="startbox">
+    <div class="logo">🏢</div>
+    <h1>许家印模拟器 · 终极版</h1>
+    <div class="sub">在债务暴雷之前，把净资产做到 100 亿 &nbsp;·&nbsp; 或者带着钱跑路</div>
+
+    <div class="rules">
+      <b>玩法</b><br>
+      · 每天可以做一个动作：买地 / 盖楼 / 卖房 / 借钱 / 吸收资金 / 还债 / 享乐 / 欺骗系统 / 买信誉 / 跳过<br>
+      · <b>现金不足以支付当日利息</b> → 资金链断裂，当场暴雷<br>
+      · 信誉决定信用评级（AAA→B），评级决定你能借到多少钱<br>
+      · 每天信誉自然 −1，负债每天滚利息<br>
+      · 净资产的算法：现金 + 土地 + 在建项目估值 − 负债<br>
+      · <b>过关条件：净资产 ≥ 100 亿</b>
+    </div>
+
+    <button class="btn primary" id="btnStart" style="font-size:16px;padding:14px 40px">▶ 开始游戏</button>
+
+    <div class="musicbar" style="justify-content:center;margin-top:18px">
+      <span class="dot" id="bgmDot"></span>
+      <span id="bgmLabel">内置合成旋律（原创 · 非《朋友的酒》）</span>
+    </div>
+    <div class="startnote">
+      🎵 想听原曲：把 <b>朋友的酒.mp3</b> 放到本文件同一个文件夹里再刷新，游戏会自动加载它；<br>
+      也可以用顶栏的「📁 选本地音乐」随时换歌。<br>
+      🔊 「哦！耶！」音效由浏览器实时合成，不包含任何歌曲采样。<br>
+      ⚠️ 本作为戏谑恶搞的虚构小游戏，情节纯属编造，请勿模仿；现实中的财务造假、转移资产、逃废债都是犯罪。
+    </div>
+  </div>
+</div>
+
+<!-- ===== 主界面 ===== -->
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <h1>🏢 许家印模拟器</h1>
+      <span class="sub">终极版 · 净资产 100 亿挑战</span>
+    </div>
+    <div class="toolbar">
+      <button class="tz on" id="tMusic">🎵 音乐：开</button>
+      <button class="tz on" id="tSfx">🔊 音效：开</button>
+      <button class="tz" id="tFile">📁 选本地音乐</button>
+      <button class="tz" id="tRestart">🔄 重开</button>
+      <input type="file" id="fileInput" accept="audio/*" class="hidden" />
+    </div>
+  </header>
+
+  <div class="hud" id="hud"></div>
+
+  <div class="grid">
+    <div>
+      <div class="card" style="margin-bottom:16px">
+        <h2>📊 经营指标 <span class="tag" id="ratingTag"></span></h2>
+        <div class="bars">
+          <div class="bar-row"><span class="nm">📈 信誉</span><span class="bar"><i class="rep" id="barRep"></i></span><span class="num" id="numRep">50</span></div>
+          <div class="bar-row"><span class="nm">🌟 声望</span><span class="bar"><i class="pre" id="barPre"></i></span><span class="num" id="numPre">50</span></div>
+          <div class="bar-row"><span class="nm">🏦 净资产</span><span class="bar"><i class="net" id="barNet"></i></span><span class="num" id="numNet">0.00</span></div>
+        </div>
+        <h2>🎮 今日操作 <span class="tag">每天只能做一件事</span></h2>
+        <div class="acts" id="acts"></div>
+      </div>
+    </div>
+
+    <div class="logwrap">
+      <div class="card">
+        <h2>📰 经营日志 <span class="tag" id="dayTag"></span></h2>
+        <div id="log"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toasts"></div>
+
+<!-- ===== 通用弹窗 ===== -->
+<div class="veil" id="veil">
+  <div class="dlg" id="dlg"></div>
+</div>
+
+<!-- ===== 结局 ===== -->
+<div id="end" class="hidden">
+  <div class="endbox">
+    <div class="big" id="endTitle"></div>
+    <div class="desc" id="endDesc"></div>
+    <div class="finalgrid" id="endStats"></div>
+    <button class="btn primary" id="btnAgain">🔄 再来一局</button>
+  </div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
